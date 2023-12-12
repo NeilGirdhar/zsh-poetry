@@ -16,7 +16,7 @@ _zp_check_poetry_venv() {
     if [[ -n $_zp_current_project ]]; then
       deactivate
     fi
-    venv="$(command poetry env list --full-path | grep Activated | sed "s/ .*//" \
+    venv="$(command poetry env list --full-path 2>/dev/null | grep Activated | sed "s/ .*//" \
         | head -1)"
     if [[ -d "$venv" ]] && [[ "$venv" != "$VIRTUAL_ENV" ]]; then
       source "$venv"/bin/activate || return $?
